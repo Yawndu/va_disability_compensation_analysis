@@ -6,7 +6,7 @@ This project cleans, structures, and analyzes county-level data on Veterans rece
 ## Data Source
 - **Provider:** Department of Veterans Affairs, National Center for Veterans Analysis & Statistics
 - **Underlying data:** USVETS25 data, Veterans Benefits Administration VETSNET FY2025 compensation data, Melissa Data (September 2025) geography data
-- **Reference:** (https://catalog.data.gov/dataset/fy-2025-disability-compensation-recipients-by-county)
+- **Reference:** [www.va.gov/vetdata](https://www.va.gov/vetdata)
 - **Snapshot date:** 9/30/2025
 
 ## Important Data Notes
@@ -46,3 +46,7 @@ Raw import table with all columns as `TEXT`. Used only as an intermediate step t
 - Point-in-time snapshot (9/30/2025); does not reflect year-over-year change
 - Excludes Veterans who left compensation status during FY2025
 - Small-county figures are incomplete by design due to privacy suppression
+- When ranking or sorting by columns that contain `NULL` (suppressed) values, PostgreSQL sorts `NULL` as the highest value by default in descending order - queries should explicitly filter with `WHERE column IS NOT NULL` before ranking, or suppressed rows will incorrectly appear at the top
+
+## Findings
+See [`findings/summary.md`](findings/summary.md) for key insights derived from this dataset, including disability rating rates by state, national age distribution, and county-level recipient patterns.
